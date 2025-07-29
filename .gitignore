@@ -1,0 +1,16 @@
+.venv/
+
+configs/
+
+data/
+logs/
+wandb/ 
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+*pt
+
+outputs/

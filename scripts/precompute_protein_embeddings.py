@@ -6,7 +6,7 @@ import json
 from tqdm import tqdm
 from models.esm_encoder import ESMEncoder
 
-def load_dataset(path, sequence_column="BindingDB Target Chain Sequence"):
+def load_dataset(path, sequence_column="BindingDB_Target_Chain_Sequence"):
     """Load unique protein sequences from the dataset. """
     df = pd.read_csv(path, sep="\t")
     sequences = df[sequence_column].dropna().unique().tolist()
