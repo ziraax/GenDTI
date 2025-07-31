@@ -44,7 +44,24 @@ def main(args):
     save_embeddings(all_embeddings, smiles_list, args.output_path)
     save_mapping(smiles_list, args.output_path)
     
+    # Save the GNN model weights for RL fine-tuning
+    model_save_path = args.output_path.replace('.pt', '_gnn_model.pt')
+    model_config = {
+        'input_dim': args.input_dim,
+        'edge_dim': args.edge_dim,
+        'hidden_dim': args.hidden_dim,
+        'output_dim': args.output_dim,
+        'num_layers': args.num_layers,
+        'dropout': args.dropout
+    }
+    
+    torch.save({
+        'model_state_dict': model.state_dict(),
+        'config': model_config
+    }, model_save_path)
+    
     print(f"Saved {len(smiles_list)} embeddings to {args.output_path}")
+    print(f"Saved GNN model weights to {model_save_path}")
     print(f"Final embedding shape: {all_embeddings.shape}")
     print("Drug embedding precomputation completed successfully.")
 
